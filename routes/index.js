@@ -40,8 +40,7 @@ router.get('/forest', function(req,res){
  * @return {Object} json
  */
 router.get('/', function(req, res) {
-
-  res.render('cryout.html')
+  res.render('forest.html')
 });
 
 // /**

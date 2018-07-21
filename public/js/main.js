@@ -16,10 +16,12 @@ function getData(){
         },
         success: function(data) {
             console.log(data);
-            var secretes = data.secretes;
+            // console.log(data.secretes.reverse());
+            var secretes = data.secretes.reverse();
+            // var secretes = data.secretes;
             secretes.forEach(function(currentSecrete){
                 var htmlToAppend =
-                '<div class="col-md-4 card">'+
+                '<div class="col-md-4 card" style="background-color: #fdfdfd;">'+
                   '<h2>'+currentSecrete.title+'</h2>'+
                     '<p>'+currentSecrete.secrete.substr(0, 280)+'</p>'+
                     '<div class="control-panel">'+
