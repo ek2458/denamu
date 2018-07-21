@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Google Font -->
+    <link href='https://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
+    <title>대나무 프로젝트</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+
+  <body onload="generateCaptcha();">
+
+    <div id="nav" class="col-md-3">
+      <a href='/about'><img id="logo" src="img/logo2.png" width="30" height="30"> Dénamu</a>
+      <a href='/cryout'>말하기</a>
+      <a href='/forest'>대나무숲</a>
+      <a href='https://twitter.com/denamu3'>트위터</a>
+    </div>
+
+      <div id="container" class="col-md-10">
+        <form action="/cryout" method="POST">
+          <div class="form-group">
+            <label for="secrete">당신의 속마음을 모두 이야기하세요.</label>
+            <p style="font-size: 0.75em;">
+              <em>공지사항</em><br>
+              대나무 프로젝트를 통해 속 시원하게 억울함을 떨치되 기본적 인터넷 예절과 타읜의 사생활이나 인권을 침해하는 글은 삼가하여주시고 모든 글은 익명 또는 닉네임으로 올려주시기 바랍니다. 또한 본 사이트에 글을 개시하실때에는 글의 내용은 본 프로젝트와 추후 설치미술의 내용으로 사용될 수 있도록 동의하시는 것임을 미리 알려드립니다
+            </p>
+            <input type="text" name="title" class="form-control" id="title" required autofocus placeholder="제목" ></input><br/>
+            <textarea rows="10" name="secrete" class="form-control" id="secrete" required placeholder="내용..."></textarea>
+          </div>
+
+          <td>
+            <p>다음 글자를 아래에 똑같이 입력하고 확인을 누르세요: </p>
+            <input type="text" id="mainCaptcha"readonly="readonly"/>
+            <!-- <input type="button" id="refresh" value="새로고침" onclick="generateCaptcha();" /> -->
+         </td><br>
+         <td>
+            <input type="text" class="form-control" id="txtInput" placeholder="입력"/>
+         </td><br>
+         <td>
+            <button id="button2" type="button" onclick="CheckValidCaptcha();"/> 확인 </button>
+         </td>
+          <button id="submit" type="submit"> 말하기
+          </button>
+
+        </form>
+      </div>
+
+
+  </body>
+
+    <!-- JQuery script -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+    <script>
+    $(document).ready(function(){
+        $("#button2").click(function(){
+            $("#submit").toggle(display);
+        });
+    });
+  </script>
+
+  <!-- Captcha -->
+  <script type="text/javascript">
+       function generateCaptcha()
+       {
+          var display = false;
+           var alpha = new Array('a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '!', '@', '#', '$', '&','?');
+           var i;
+           for (i=0;i<5;i++){
+             var a = alpha[Math.floor(Math.random() * alpha.length)];
+             var b = alpha[Math.floor(Math.random() * alpha.length)];
+             var c = alpha[Math.floor(Math.random() * alpha.length)];
+             var d = alpha[Math.floor(Math.random() * alpha.length)];
+             var e = alpha[Math.floor(Math.random() * alpha.length)];
+            }
+          var code = a + '' + b + '' + '' + c + '' + d + '' + e;
+          document.getElementById("mainCaptcha").value = code;
+          if ( display === true ) {
+            $( "#submit" ).show();
+            $( "#button2" ).hide();
+          } else if ( display === false ) {
+            $( "#submit" ).hide();
+            $( "#button2" ).show();
+          }
+        }
+        function CheckValidCaptcha(){
+            var string1 = removeSpaces(document.getElementById('mainCaptcha').value);
+            var string2 = removeSpaces(document.getElementById('txtInput').value);
+            if (string1 == string2){
+              display = true;
+              return true;
+            }
+            else{
+              alert("다시 입력하세요");
+              return false;
+            }
+        }
+        function removeSpaces(string){
+          return string.split(' ').join('');
+        }
+    </script>
+
+</html>

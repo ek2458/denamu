@@ -9,6 +9,7 @@ var env = require('node-env-file');
 
 var app = express();
 
+
 // if in development mode, load .env variables
 if (app.get("env") === "development") {
     env(__dirname + '/.env');

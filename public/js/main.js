@@ -16,34 +16,31 @@ function getData(){
         },
         success: function(data) {
             console.log(data);
-            var animals = data.animals;
-            animals.forEach(function(currentAnimal){
+            var secretes = data.secretes;
+            secretes.forEach(function(currentSecrete){
                 var htmlToAppend =
                 '<div class="col-md-4 card">'+
-                    '<h1>'+currentAnimal.name+'</h1>'+
-                    '<img src="'+currentAnimal.url+'" />'+
-                    '<div class="tagHolder">'+
-                        renderTags(currentAnimal)+
-                    '</div>'+
+                  '<h2>'+currentSecrete.title+'</h2>'+
+                    '<p>'+currentSecrete.secrete.substr(0, 280)+'</p>'+
                     '<div class="control-panel">'+
-                        '<a href="/api/delete/'+currentAnimal._id+'">Delete</a>'+
-                        '<br/>'+
-                        '<a href="/edit/'+currentAnimal._id+'">Edit</a>'+
+                        '<a href="/sori/'+currentSecrete._id+'">더 읽기</a>'+
                     '</div>'+
                 '</div>'
-                $('#pet-holder').append(htmlToAppend);
-            })
+                $('#secrete-holder').append(htmlToAppend);
+            });
+
+            secretes.forEach(function(currentSecrete){
+                var htmlToAppend =
+                '<div class="col-md-4 card">'+
+                  '<h2>'+currentSecrete.title+'</h2>'+
+                    '<p>'+currentSecrete.secrete.substr(0, 280)+'</p>'+
+                    '<div class="control-panel">'+
+                        '<a href="/sori/'+currentSecrete._id+'">더 읽기</a>'+
+                        '<a href="/blowaway/'+currentSecrete._id+'">삭제</a>'+
+                    '</div>'+
+                '</div>'
+                $('#secrete-holder02').append(htmlToAppend);
+            });
         }
     });
-}
-
-function renderTags(currentAnimal){
-
-    var tags = '';
-    for(var i = 0; i<currentAnimal.tags.length; i++){
-        tags = tags +'<div class="tag">'+currentAnimal.tags[i]+'</div>'
-    }
-
-    return tags;
-
 }

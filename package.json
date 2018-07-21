@@ -1,5 +1,5 @@
 {
-  "name": "node-express-api-boilerplate",
+  "name": "denamu",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -15,6 +15,7 @@
     "mongoose": "^4.1.10",
     "morgan": "~1.6.1",
     "node-env-file": "^0.1.7",
-    "serve-favicon": "~2.3.0"
+    "serve-favicon": "~2.3.0",
+    "twit": "^2.2.10"
   }
 }
